@@ -1,14 +1,14 @@
 ---
 route: '/'
 ---
-# Home
+# 首页
 
 {% callout type="warning" %}
-This is a warning callout!
+这是一个警告提示！
 {% /callout %}
 
 {% callout type="caution" %}
-This is a caution callout!
+这是一个谨慎提示！
 {% /callout %}
 
 ```js

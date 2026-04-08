@@ -1,13 +1,13 @@
 ---
-title: Config objects
-description: Pass customizations into the rendering pipeline using a config object
+title: 配置对象
+description: 使用配置对象将自定义内容传入渲染流程
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-When you customize Markdoc, you must pass your customization into the rendering pipeline. The most common way to do this is to provide a config object to the [transform](/docs/render#transform) phase of rendering. 
+当您自定义 Markdoc 时，必须将自定义内容传入渲染流程。最常见的方式是在渲染的 [转换](/docs/render#transform) 阶段提供一个配置对象。
 
-For instance, create a config object that specifies the variable `$version` has a value of `"1.0"`. Then, pass it to the `transform` function.
+例如，创建一个配置对象，指定变量 `$version` 的值为 `"1.0"`。然后将其传递给 `transform` 函数。
 
 {% example %}
 ```js
@@ -19,51 +19,51 @@ const html = Markdoc.renderers.html(content);
 ```
 {% /example %}
 
-## Options
+## 选项
 
-This table outlines the various options you can pass in a config object.
+此表格概述了可在配置对象中传递的各种选项。
 
 {% table %}
 
-- Key
-- Type
-- Description
+- 键
+- 类型
+- 描述
 
 ---
 
-- [`nodes`](/docs/nodes)
+- [`节点`](/docs/nodes)
 - {% code %}{ [nodeType: [NodeType](/docs/nodes#built-in-nodes)]: [Schema](https://github.com/markdoc/markdoc/blob/60a2c831bd7ac8f2f24aabfde0b36e56e5d0dbe1/src/types.ts#L101-L109) }{% /code%}
-- Register [custom nodes](/docs/nodes) in your schema
+- 在您的模式中注册 [自定义节点](/docs/nodes)
 
 ---
 
-- [`tags`](/docs/tags)
+- [`标签`](/docs/tags)
 - {% code %}{ [tagName: string]: [Schema](https://github.com/markdoc/markdoc/blob/60a2c831bd7ac8f2f24aabfde0b36e56e5d0dbe1/src/types.ts#L101-L109) }{% /code%}
-- Register [custom tags](/docs/tags) in your schema
+- 在您的模式中注册 [自定义标签](/docs/tags)
 
 ---
 
-- [`variables`](/docs/variables)
+- [`变量`](/docs/variables)
 - `{ [variableName: string]: any }`
-- Register [variables](/docs/variables) to use in your document
+- 注册 [变量](/docs/variables) 以在文档中使用
 
 ---
 
-- [`functions`](/docs/functions)
+- [`函数`](/docs/functions)
 - {% code %}{ [functionName: string]: [ConfigFunction](https://github.com/markdoc/markdoc/blob/6bcb8a0c48a181ca9df577534d841280646cea09/src/types.ts#L31-L36) }{% /code %}
-- Register [custom functions](/docs/functions) to use in your document
+- 注册 [自定义函数](/docs/functions) 以在文档中使用
 
 ---
 
-- [`partials`](/docs/partials)
+- [`部分`](/docs/partials)
 - `{ [partialPath: string]: Ast.Node }`
-- Register reusable pieces of content to used by the [`partial` tag](/docs/partials)
+- 注册可重用内容片段，供 [`partial` 标签](/docs/partials) 使用
 
 {% /table %}
 
-## Full example
+## 完整示例
 
-Here's an example of what a Markdoc config would look like:
+以下是 Markdoc 配置的示例：
 
 ```js
 /** @type {import('@markdoc/markdoc').Config} */

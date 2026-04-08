@@ -15,24 +15,24 @@ const schema = {
 };
 
 const INITIAL_CODE = `---
-title: What is Markdoc?
+title: 什么是 Markdoc？
 ---
 
 # {% $markdoc.frontmatter.title %} {% #overview %}
 
-Markdoc is a Markdown-based syntax and toolchain for creating custom documentation sites. Stripe created Markdoc to power [our public docs](http://stripe.com/docs).
+Markdoc 是一种基于 Markdown 的语法和工具链，用于创建自定义文档站点。Stripe 创建 Markdoc，是为了支撑 [我们的公开文档](http://stripe.com/docs)。
 
 {% callout type="check" %}
-Markdoc is open-source—check out its [source](http://github.com/markdoc/markdoc) to see how it works.
+Markdoc 是开源的，欢迎查看它的 [源码](http://github.com/markdoc/markdoc) 了解其工作方式。
 {% /callout %}
 
-## How is Markdoc different?
+## Markdoc 有什么不同？
 
-Markdoc uses a fully declarative approach to composition and flow control, where other solutions… [Read more](/docs/overview).
+Markdoc 采用完全声明式的组合与流程控制方式，而其他方案……[了解更多](/docs/overview)。
 
-## Next steps
-- [Install Markdoc](/docs/getting-started)
-- [Explore the syntax](/docs/syntax)
+## 后续步骤
+- [安装 Markdoc](/docs/getting-started)
+- [探索语法](/docs/syntax)
 `;
 
 const BASE_FRONTMATTER = { markdoc: { title: '' } };
@@ -69,7 +69,7 @@ export function useMarkdocCode(code) {
         markdoc: {
           frontmatter: frontmatter || BASE_FRONTMATTER
         },
-        invalid_code: `\n{% callout %}\nHere!\n`
+        invalid_code: `\n{% callout %}\n这里！\n`
       },
       components
     };
@@ -106,7 +106,7 @@ function EditorInternal({ code, onChange, options, errors, cursor }) {
       theme: 'none',
       mode: 'markdoc',
       lineWrapping: true,
-      screenReaderLabel: 'Markdoc sandbox'
+      screenReaderLabel: 'Markdoc 沙盒'
     }),
     [options, cursor]
   );
@@ -390,17 +390,17 @@ export function Sandbox({ height, options }) {
     <div className="sandbox" onClick={() => setInteracted(true)}>
       <nav>
         <div className="btn-group">
-          <button onClick={() => setCode(INITIAL_CODE)}>Reset</button>
+          <button onClick={() => setCode(INITIAL_CODE)}>重置</button>
           {isInSandbox && (
-            <button title="CMD + ;" onClick={format}>
-              Format
+            <button title="⌘ + ; 格式化" onClick={format}>
+              格式化
             </button>
           )}
         </div>
         <div className="btn-group">
           {router.pathname === '/' ? (
             <button onClick={() => router.push('/sandbox')}>
-              Explore developer sandbox&nbsp;→
+              探索开发者沙盒&nbsp;→
             </button>
           ) : (
             <>
@@ -408,13 +408,13 @@ export function Sandbox({ height, options }) {
                 className={mode === 'preview' ? 'active' : undefined}
                 onClick={() => setMode('preview')}
               >
-                React
+                预览
               </button>
               <button
                 className={mode === 'transform' ? 'active' : undefined}
                 onClick={() => setMode('transform')}
               >
-                Renderable tree
+                可渲染树
               </button>
               <button
                 className={mode === 'ast' ? 'active' : undefined}
@@ -443,7 +443,7 @@ export function Sandbox({ height, options }) {
         <section className="right dark">
           {mode === 'preview' && (
             <div className="preview light">
-              {hasInteracted ? null : <Cursor>Try it out</Cursor>}
+              {hasInteracted ? null : <Cursor>试试看</Cursor>}
               {Markdoc.renderers.react(content, React, {
                 components: config.components
               })}

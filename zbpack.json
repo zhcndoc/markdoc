@@ -1,0 +1,8 @@
+{
+  "app_dir": "/",
+  "build_command": "npm run build",
+  "ignore_dockerfile": true,
+  "install_command": "npm install",
+  "output_dir": "",
+  "start_command": "npm run start"
+}

@@ -30,5 +30,8 @@
     "next-sitemap": "^2.5.28",
     "spec-md": "^3.1.0",
     "vercel": "^50"
+  },
+  "engines": {
+    "node": "24.12.0"
   }
 }

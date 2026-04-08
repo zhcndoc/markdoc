@@ -1,13 +1,13 @@
 ---
-title: Partials
+title: 部分
 description:
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Markdoc uses partials to reuse content across documents. A separate Markdoc file stores the content, and it's referenced from within the partial tag.
+Markdoc 使用部分（partials）来跨文档重用内容。一个独立的 Markdoc 文件存储内容，并通过 partial 标签引用。
 
-Here's an example of including the `header.md` file as a partial.
+以下是将 `header.md` 文件作为部分包含的示例。
 {% example %}
 
 ```
@@ -16,9 +16,9 @@ Here's an example of including the `header.md` file as a partial.
 
 {% /example %}
 
-#### Registering partials
+#### 注册部分
 
-You define partials by creating a mapping from the file name to an abstract syntax tree (AST) node in your [`config` object](/docs/config). The default `partial` [tag](/docs/tags) looks at this config to include the right content.
+您通过将文件名映射到 [`config` 对象](/docs/config) 中的抽象语法树（AST）节点来定义部分。默认的 `partial` [标签](/docs/tags) 会查看此配置以包含正确的内容。
 
 {% example %}
 
@@ -41,11 +41,11 @@ const content = Markdoc.transform(ast, config);
 
 {% /example %}
 
-If you want the `partial` tag to behave differently, you can override it in `Config.tags`.
+如果您希望 `partial` 标签表现不同，可以在 `Config.tags` 中覆盖它。
 
-#### Passing variables
+#### 传递变量
 
-Partials are like any other tags, so you can pass [variables](/docs/variables) as [attributes](/docs/attributes) to them such as:
+部分就像其他任何标签一样，因此您可以将 [变量](/docs/variables) 作为 [属性](/docs/attributes) 传递给它们，例如：
 
 {% example %}
 
@@ -55,7 +55,7 @@ Partials are like any other tags, so you can pass [variables](/docs/variables) a
 
 {% /example %}
 
-and access the variables as you would in a regular Markdoc document:
+并像在常规 Markdoc 文档中一样访问这些变量：
 
 {% example %}
 

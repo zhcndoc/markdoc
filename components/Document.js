@@ -12,6 +12,11 @@ function EditPage({ source: initialDocument }) {
       {Markdoc.renderers.react(content.children, React, {
         components: config.components
       })}
+      <div
+        className="wwads-cn wwads-horizontal"
+        style={{ marginTop: '1rem', marginBottom: '1rem', maxWidth: '100%' }}
+        data-id="354"
+      />
       <EditPagePanel>
         <Editor code={doc} onChange={setDoc} errors={errors} />
       </EditPagePanel>
@@ -25,5 +30,24 @@ export function Document({ source, children }) {
    * this extra branch in order to pop up the editor that reveals
    * the source content for each document
    */
-  return <article>{source ? <EditPage source={source} /> : children}</article>;
+  return (
+    <article>
+      {source ? (
+        <EditPage source={source} />
+      ) : (
+        <>
+          {children}
+          <div
+            className="wwads-cn wwads-horizontal"
+            style={{
+              marginTop: '1rem',
+              marginBottom: '1rem',
+              maxWidth: '100%'
+            }}
+            data-id="354"
+          />
+        </>
+      )}
+    </article>
+  );
 }

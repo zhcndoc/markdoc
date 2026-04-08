@@ -1,118 +1,117 @@
 ---
-title: Functions
-description: Functions let you extend Markdoc to run custom code.
+title: 函数
+description: 函数让你扩展 Markdoc 以运行自定义代码。
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Functions enable you extend Markdoc with custom utilities, which let you transform your content and [variables](/docs/syntax#variables) at runtime.
+函数让你通过自定义工具扩展 Markdoc，这些工具可以在运行时转换你的内容和[变量](/docs/syntax#variables)。
 
+## 内置函数
 
-## Built-in functions
-
-Markdoc comes out-of-the-box with six built-in functions: `equals`, `and`, `or`, `not`, `default`, and `debug`.
+Markdoc 开箱即用，包含六个内置函数：`equals`、`and`、`or`、`not`、`default` 和 `debug`。
 
 {% table %}
 
-- Function
-- Returns
-- Example
-- Description
+- 函数
+- 返回值
+- 示例
+- 描述
 
 ---
 
 - `equals`
 - `boolean`
 - `equals($myString, 'test')`
-- Performs common boolean operation
+- 执行常见的布尔操作
 
 ---
 
 - `and`
 - `boolean`
 - `and($boolean1, $boolean2)`
-- Performs common boolean operation
+- 执行常见的布尔操作
 
 ---
 
 - `or`
 - `boolean`
 - `or($boolean1, $boolean2)`
-- Performs common boolean operation
+- 执行常见的布尔操作
 
 ---
 
 - `not`
 - `boolean`
 - `not(or($boolean1, $boolean2))`
-- Performs common boolean operation
+- 执行常见的布尔操作
 
 ---
 
 - `default`
 - `mixed`
 - `default($variable, true)`
-- Returns the second parameter if the first parameter is `undefined`
+- 如果第一个参数是 `undefined`，则返回第二个参数
 
 ---
 
 - `debug`
 - `string`
 - `debug($anyVariable)`
-- Serializes the value as JSON, for debugging
+- 将值序列化为 JSON 格式以供调试
 
 {% /table %}
 
-### And/Or/Not
+### 与/或/非
 
-Use these functions with the `if` [tag](/docs/tags) to perform boolean operations and render the content when the condition is met.
+将这些函数与 `if` [标签](/docs/tags) 结合使用，以执行布尔操作并在条件满足时渲染内容。
 
 {% callout type="warning" %}
-Unlike JavaScript, Markdoc only considers `undefined`, `null`, and `false` to be falsey.
+与 JavaScript 不同，Markdoc 只将 `undefined`、`null` 和 `false` 视为假值。
 {% /callout %}
 
 {% example %}
 
 ```
-This is always shown
+这段内容始终显示
 {% if and(not($a), or($b, $c)) %}
-This is shown only if $a is falsy and either $b or $c is true.
+仅当 $a 为假值且 $b 或 $c 为真时显示此内容。
 {% /if %}
 ```
 
 {% /example %}
 
-### Equals
+### 等于
 
-Use the `equals` function to compare a variable against a given value. This function uses JavaScript's strict equality semantics, and is only used for primitive types.
+使用 `equals` 函数将变量与给定值进行比较。此函数使用 JavaScript 的严格相等语义，仅用于原始类型。
 
 {% example %}
 
 ```
 {% if equals($myVar, "test") %}
-The variable $myVar is equal to the string "test".
+变量 $myVar 等于字符串 "test"。
 {% /if %}
 ```
 
 {% /example %}
 
-### Default
+### 默认值
 
-This function is useful to set a value for a variable that might not exist.
+此函数用于为可能不存在的变量设置值。
 
 {% example %}
 
 ```
 {% if default($showPrompt, true) %}
-Hey there!
+嘿，你好！
 {% /if %}
 ```
 
 {% /example %}
 
-### Debug
+### 调试
 
-This function simply renders the value as a serialized JSON value in the document. This can be useful for determining what value is in a [variable](/docs/syntax#variables).
+此函数将值作为序列化的 JSON 值渲染到文档中。这有助于确定[变量](/docs/syntax#variables)中的值。
 
 {% example %}
 
@@ -123,9 +122,9 @@ This function simply renders the value as a serialized JSON value in the documen
 {% /example %}
 
 
-## Creating a custom function
+## 创建自定义函数
 
-To extend Markdoc with your own functions, first create custom function definitions:
+要使用你自己的函数扩展 Markdoc，首先创建自定义函数定义：
 
 ```js
 const includes = {
@@ -145,7 +144,7 @@ const uppercase = {
 };
 ```
 
-Then, pass the functions to your [`config` object](/docs/config).
+然后，将函数传递给您的[`config`对象](/docs/config)。
 
 ```js
 /** @type {import('@markdoc/markdoc').Config} */
@@ -159,7 +158,7 @@ const config = {
 const content = Markdoc.transform(ast, config);
 ```
 
-Finally, call the functions within your Markdoc content
+最后，在您的 Markdoc 内容中调用这些函数
 
 {% example %}
 
@@ -174,7 +173,7 @@ Finally, call the functions within your Markdoc content
 
 {% /example %}
 
-## Next steps
+## 后续步骤
 
-- [Validate your content](/docs/validation)
-- [Render as HTML or React](/docs/render)
+- [验证您的内容](/docs/validation)
+- [渲染为 HTML 或 React](/docs/render)

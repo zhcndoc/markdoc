@@ -1,17 +1,17 @@
 ---
-title: Common examples
+title: 常见示例
 description:
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-With Markdoc, it's easy to add functionality you'd commonly associate with documentation sites. The examples below cover loops, syntax highlighting, tabs, and more.
+使用 Markdoc，可以轻松添加通常与文档站点关联的功能。以下示例涵盖循环、语法高亮、标签页等内容。
 
-If you're looking for other sample code, check out our collection of [example repos](https://github.com/markdoc/docs/tree/main/examples), or view the [source code for this site](https://github.com/markdoc/docs).
+如果您正在寻找其他示例代码，请查看我们的[示例仓库](https://github.com/markdoc/docs/tree/main/examples)集合，或查看[本站源码](https://github.com/markdoc/docs)。
 
-## Loops
+## 循环
 
-Markdoc does not support writing loops directly in documents. If you need to loop through content, do so in a custom [Node](/docs/nodes) or [Tag](/docs/tags) `transform` function or in a custom [React component](/docs/render#react).
+Markdoc 不支持直接在文档中编写循环。如果需要遍历内容，请在自定义 [Node](/docs/nodes) 或 [Tag](/docs/tags) 的 `transform` 函数中，或在自定义 [React 组件](/docs/render#react) 中进行。
 
 ```js
 import { Tag } from '@markdoc/markdoc';
@@ -26,7 +26,7 @@ export const group = {
     const children = node.transformChildren(config);
 
     for (const item of attributes.items) {
-      /* Do something with each item */
+      /* 对每个项目执行某些操作 */
     }
 
     return new Tag('Group', attributes, children);
@@ -42,12 +42,12 @@ export const group = {
 
 {% /example %}
 
-## Syntax highlighting
+## 语法高亮
 
-You can hook up syntax highlighting for code blocks by creating a custom `fence` [node](/docs/nodes). This example shows how to do so with [Prism](https://prismjs.com/).
+您可以通过创建自定义 `fence` [节点](/docs/nodes) 为代码块添加语法高亮。此示例展示了如何使用 [Prism](https://prismjs.com/) 实现。
 
 ```js
-// [Source example](https://github.com/markdoc/docs/blob/main/components/Code.js)
+// [源码示例](https://github.com/markdoc/docs/blob/main/components/Code.js)
 
 import 'prismjs';
 import 'prismjs/themes/prism.css';
@@ -84,9 +84,9 @@ Markdoc.renderers.react(content, React, {
 });
 ```
 
-## Switch statements
+## Switch 语句
 
-You can create your own `switch`/`case` semantics with custom Markdoc tags.
+您可以使用自定义 Markdoc 标签创建自己的 `switch`/`case` 语义。
 
 ```js
 import { transformer } from '@markdoc/markdoc';
@@ -113,7 +113,7 @@ const config = {
 };
 ```
 
-which can then be used in your document:
+然后可以在文档中使用：
 
 {% example %}
 
@@ -133,16 +133,16 @@ Case 2
 
 {% /example %}
 
-## Table of contents
+## 目录
 
-To create a table of contents, first collect all headings from the page content:
+要创建目录，首先从页面内容中收集所有标题：
 
 ```js
-// [Source example](https://github.com/markdoc/docs/blob/bae62d06109e3e699778fe901c8015d41b1c7c9f/pages/_app.js#L58-L79)
+// [源码示例](https://github.com/markdoc/docs/blob/bae62d06109e3e699778fe901c8015d41b1c7c9f/pages/_app.js#L58-L79)
 
 function collectHeadings(node, sections = []) {
   if (node) {
-    // Match all h1, h2, h3… tags
+    // 匹配所有 h1、h2、h3 等标签
     if (node.name.match(/h\d/)) {
       const title = node.children[0];
 
@@ -168,10 +168,10 @@ const content = Markdoc.transform(ast);
 const headings = collectHeadings(content);
 ```
 
-Then, render the headings in a list:
+然后，将标题渲染为列表：
 
 ```js
-// [Source example](https://github.com/markdoc/docs/blob/main/components/Shell/TableOfContents.js)
+// [源码示例](https://github.com/markdoc/docs/blob/main/components/Shell/TableOfContents.js)
 
 function TableOfContents({ headings }) {
   const items = headings.filter((item) => [2, 3].includes(item.level));
@@ -190,19 +190,19 @@ function TableOfContents({ headings }) {
 }
 ```
 
-Finally, add IDs to the headings using ID [annotations](/docs/syntax#annotations)
+最后，使用 ID [注解](/docs/syntax#annotations) 为标题添加 ID。
 
 {% example %}
 
 ```md
-# My header {% #my-id %}
+# 我的标题 {% #my-id %}
 ```
 
 {% /example %}
 
-## Tabs
+## 标签页
 
-First, create the Markdoc tags
+首先，创建 Markdoc 标签。
 
 ```js
 import { Tag } from '@markdoc/markdoc';
@@ -238,7 +238,7 @@ const config = {
 };
 ```
 
-Then, create a `Tab` and `Tabs` React component which map to the `tab` and `tabs` tag:
+然后，创建映射到 `tab` 和 `tabs` 标签的 `Tab` 和 `Tabs` React 组件：
 
 {% sideBySide %}
 
@@ -301,7 +301,7 @@ export function Tab({ label, children }) {
 
 {% /sideBySide %}
 
-and use the tags in your document.
+并在文档中使用这些标签。
 
 {% example %}
 
@@ -309,11 +309,11 @@ and use the tags in your document.
 {% tabs %}
 
 {% tab label="React" %}
-React content goes here
+React 内容放在这里
 {% /tab %}
 
 {% tab label="HTML" %}
-HTML content goes here
+HTML 内容放在这里
 {% /tab %}
 
 {% /tabs %}

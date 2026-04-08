@@ -1,54 +1,54 @@
-# Markdoc tag syntax specification
+# Markdoc 标签语法规范
 
 <table>
 <tbody>
 <tr>
-  <th><strong>Version:<strong></th>
-  <td>0.1.0 Draft</td>
+  <th><strong>版本：<strong></th>
+  <td>0.1.0 草案</td>
 </tr>
 <tr>
-  <th><strong>Author:</strong></th>
+  <th><strong>作者：</strong></th>
   <td>Ryan Paul</td>
 </tr>
 </tbody>
 </table>
 
-Markdoc is a Markdown-based document format and a framework for content publishing. Markdoc extends Markdown with a custom syntax for tags and annotations, providing a way to tailor content to individual users and introduce interactive elements. This specification describes the syntax of Markdoc tags and how to parse them within Markdown content.
+Markdoc 是一种基于 Markdown 的文档格式和内容发布框架。Markdoc 通过自定义的标签和注解语法扩展了 Markdown，提供了一种为个别用户定制内容和引入交互元素的方法。本规范描述了 Markdoc 标签的语法以及如何在 Markdown 内容中解析它们。
 
-NOTE: This specification is an early draft and is still largely a work in progress. 
+注意：本规范为早期草案，目前大部分内容仍在进行中。
 
-# Tags
+# 标签
 
 TagStart :: `{%`
 
 TagEnd :: `%}`
 
-TagInterior :: one of
+TagInterior :: 以下之一
 - TagOpen
 - TagSelfClosing
 - TagClose
 
 Tag :: TagStart Space* TagInterior TagEnd
 
-A Markdoc {Tag} is a piece of markup that applies custom behavior or formatting in a Markdoc document. Tags can be nested, making it possible to express hierarchy or apply custom formatting to enclosed children. Matched pairs of opening tags and closing tags signify the beginning and end of a tag element that encloses children.
+Markdoc {Tag} 是一段标记，用于在 Markdoc 文档中应用自定义行为或格式。标签可以嵌套，从而表达层次结构或对封闭的子内容应用自定义格式。配对的开始标签和结束标签表示包含子内容的标签元素的开始和结束。
 
 ```example
 {% example %}
-This paragraph is nested within a Markdoc tag.
+此段落嵌套在 Markdoc 标签内。
 {% /example %}
 ```
 
-Tags can also be self-closing, containing no nested content:
+标签也可以是自闭合的，不包含嵌套内容：
 
 ```example
 {% example /%}
 ```
 
-:: The *tag delimiters* ({TagStart} and {TagEnd}) indicate the presence of a Markdoc tag within Markdown content. Characters within the delimiters are treated as the {TagInterior}. When a {TagStart} delimiter is detected in a Markdown document, the parser should scan forward until it finds the first {TagEnd} delimiter that is not enclosed within a {ValueString} in order to determine where the tag ends.
+:: *标签分隔符*（{TagStart} 和 {TagEnd}）指示 Markdown 内容中存在 Markdoc 标签。分隔符内的字符被视为 {TagInterior}。当在 Markdown 文档中检测到 {TagStart} 分隔符时，解析器应向前扫描，直到找到第一个未包含在 {ValueString} 内的 {TagEnd} 分隔符，以确定标签结束的位置。
 
-Determining what behavior and formatting is applied by a given Markdoc tag and its attributes is left to individual Markdoc implementations.
+由特定 Markdoc 标签及其属性应用何种行为和格式，由各个 Markdoc 实现自行决定。
 
-## Opening tag
+## 开始标签
 
 PrimaryAttribute :: Space+ Value
 
@@ -56,100 +56,100 @@ AttributeItem :: Space+ Attribute
 
 TagOpen :: Identifier PrimaryAttribute? AttributeItem* Space* 
 
-:: An *opening tag* indicates the start of a Markdoc tag element that contains nested children. An opening tag's {TagInterior} must include the name of the tag and can include zero or more tag attributes.
+:: *开始标签*表示包含嵌套子内容的 Markdoc 标签元素的开始。开始标签的 {TagInterior} 必须包含标签名称，并可包含零个或多个标签属性。
 
-A tag may optionally have an unnamed {PrimaryAttribute} value following the {Identifier}:
+标签在 {Identifier} 后可选择性地带有一个未命名的 {PrimaryAttribute} 值：
 
 ```example
 {% if $foo %}
-This is a paragraph in an `if` tag.
+这是 `if` 标签内的一个段落。
 {% /if %}
 ```
 
-## Self-closing tag
+## 自闭合标签
 
 TagSelfClosing :: TagOpen `/` 
 
-:: A *self-closing tag*, indicated by a forward-slash at the end of the {TagInterior}, indicates a Markdoc tag element that does not contain nested children. A self-closing tag's {TagInterior} must include the name of the tag and can include zero or more tag attributes. 
+:: *自闭合标签*（在 {TagInterior} 末尾由正斜杠指示）表示不包含嵌套子内容的 Markdoc 标签元素。自闭合标签的 {TagInterior} 必须包含标签名称，并可包含零个或多个标签属性。
 
-## Closing tag
+## 结束标签
 
 TagClose :: `/` Identifier Space* 
 
-:: A *closing tag*, indicated by a forward-slash at the start of the {TagInterior}, indicates the end of a Markdoc tag element that contains nested children. A closing tag's {TagInterior} may include include the name of the tag and optional trailing whitespace. A closing tag corresponds to the most recent *opening tag* that has the same tag name.
+:: *结束标签*（在 {TagInterior} 开头由正斜杠指示）表示包含嵌套子内容的 Markdoc 标签元素的结束。结束标签的 {TagInterior} 可能包含标签名称和可选的尾随空白。结束标签与具有相同标签名称的最近一个*开始标签*相对应。
 
-NOTE: A future draft will specify the expected parsing behavior for malformed documents with mismatched opening and closing tags.
+注意：未来的草案将指定不匹配的开始和结束标签的畸形文档的预期解析行为。
 
-## Tag forms
+## 标签形式
 
-Markdoc tags can be used as either [block or inline](https://spec.commonmark.org/0.30/#blocks-and-inlines) elements in a Markdown document.
+Markdoc 标签在 Markdown 文档中可以作为 [块级或内联](https://spec.commonmark.org/0.30/#blocks-and-inlines) 元素使用。
 
-### Block form
+### 块级形式
 
-A tag should be parsed as a block-level element when its opening and closing markers each appear on a line by themselves with no other characters except whitespace. In the following example, the tag `foo` should be parsed as a block-level element that contains a single paragraph:
+当标签的开始和结束标记各自单独出现在一行上，且除空白外没有其他字符时，应将其解析为块级元素。在以下示例中，标签 `foo` 应被解析为包含单个段落的块级元素：
 
 ```example
 {% foo %}
-This is content inside of a block-level tag
+这是块级标签内的内容
 {% /foo %}
 ```
 
-### Inline form
+### 内联形式
 
-When the *opening tag* and *closing tag* appear on the same line within a paragrah, the tag should be treated as an inline document elmement nested inside of the block-level paragraph element:
-
-```example
-This is a paragraph {% foo %}that contains a tag{% /foo %}
-```
-
-When the *opening tag* and *closing tag* appear on the same line with no other surrounding content, the tag should still be treated as an inline document element, nested within an implied block-level paragraph element:
+当*开始标签*和*结束标签*出现在同一段落内的同一行上时，该标签应被视为嵌套在块级段落元素内的内联文档元素：
 
 ```example
-{% foo %}This is content inside of an inline tag{% /foo %}
+这是一个段落 {% foo %}包含标签的内容{% /foo %}
 ```
 
-## Annotation
+当*开始标签*和*结束标签*出现在同一行上且周围没有其他内容时，该标签仍应被视为内联文档元素，嵌套在隐式的块级段落元素内：
+
+```example
+{% foo %}这是内联标签内的内容{% /foo %}
+```
+
+## 注解
 
 Annotation :: TagBegin Space* Attribute* Space* TagEnd
 
-An {Annotation} applies {Attribute}s to the enclosing Markdown block. The attributes within the annotation are treated as though they are attributes on the document node itself. For example, an annotation can be used to add a CSS class to a heading node:
+{Annotation} 将 {Attribute} 应用于封闭的 Markdown 块。注解内的属性被视为文档节点本身的属性。例如，注解可用于为标题节点添加 CSS 类：
 
 ```example
-# Heading {% .example %}
+# 标题 {% .example %}
 ```
 
-An {Annotation} may only be used as an inline document node. When an annotation appears on a line by itself, it is treated as though it is nested in a block-level paragraph element. Within an {Annotation}, each {Attribute} is separated by a space. 
+{Annotation} 只能作为内联文档节点使用。当注解单独出现在一行时，它被视为嵌套在块级段落元素内。在 {Annotation} 内，每个 {Attribute} 由空格分隔。
 
-## Attributes
+## 属性
 
-Attribute :: one of
+Attribute :: 以下之一
 - AttributeFull
 - AttributeShorthand
 
 AttributeFull :: Identifier `=` Value
 
-There are two types of attributes: full attributes ({AttributeFull}) and shorthand attributes ({AttributeShorthand}).
+属性有两种类型：完整属性（{AttributeFull}）和简写属性（{AttributeShorthand}）。
 
-A full {Attribute} is a key-value pair that consists of an {Identifier} and a {Value} separated by an {`=`} sign. The {Identifier} serves as the {Attribute}'s key. No whitespace is permitted between the tokens that make up an {Attribute}.
+完整 {Attribute} 是由 {Identifier} 和 {Value} 组成的键值对，两者由 {`=`} 号分隔。{Identifier} 作为属性的键。组成 {Attribute} 的标记之间不允许有空白。
 
 ```example
 {% foo="bar" baz=[1, 2, 3] %}
 ```
 
-### Shorthand attribute
+### 简写属性
 
 AttributeShorthand :: ShorthandSigil Identifier
 
-ShorthandSigil :: one of `#` `.`
+ShorthandSigil :: 以下之一 `#` `.`
 
-A shorthand attribute consists of a {ShorthandSigil} followed by an {Identifier}. The sigil represents the attribute's key. The following table describes the attribute key represented by each sigil:
+简写属性由 {ShorthandSigil} 后跟一个 {Identifier} 组成。符号表示属性的键。下表描述了每个符号表示的属性键：
 
-Sigil | Key
+符号 | 键
 -|-
 {`#`} | `id`
 {`.`} | `class`
 
-A shorthand attribute is equivalent to a full attribute that uses the key represented by the sigil. The following examples produce the same output:
+简写属性等价于使用符号表示的键的完整属性。以下示例产生相同的输出：
 
 ```example
 {% #foo .bar %}
@@ -159,7 +159,7 @@ A shorthand attribute is equivalent to a full attribute that uses the key repres
 {% id="foo" class="bar" %}
 ```
 
-When there are multiple shorthand attributes that use the class sigil ({`.`}), the parser combines them into a single `class` attribute. The following examples are equivalent:
+当有多个使用类符号（{.}）的简写属性时，解析器会将它们合并为一个 `class` 属性。以下示例是等价的：
 
 ```example
 {% .foo .bar .baz %}
@@ -169,32 +169,32 @@ When there are multiple shorthand attributes that use the class sigil ({`.`}), t
 {% class="foo bar baz" %}
 ```
 
-# Interpolation
+# 插值
 
 Interpolation :: `{%` Space* InterpolationValue Space* `%}`
 
-InterpolationValue :: one of
+InterpolationValue :: 以下之一
 - Function
 - Variable
 
-{Interpolation} is used to insert a Markdoc variable or the return value of a Markdoc function into the text of the Markdown document. Interpolation can only be used inside of an inline document node. When an interpolation appears on a line by itself, it is implicitly nested as inline content within a paragraph.
+{Interpolation} 用于将 Markdoc 变量或 Markdoc 函数的返回值插入 Markdown 文档的文本中。插值只能在内联文档节点内使用。当插值单独出现在一行时，它被隐式嵌套为段落内的内联内容。
 
 ```example
-Hello {% $username %}
+你好 {% $username %}
 ```
 
-# Values
+# 值
 
-Value :: one of
+Value :: 以下之一
 - PrimitiveValue
 - CompoundValue
 - Variable
 - Function
 
 
-## Primitive values
+## 原始值
 
-PrimitiveValue :: one of
+PrimitiveValue :: 以下之一
 - ValueNull
 - ValueBoolean
 - ValueNumber
@@ -204,11 +204,11 @@ PrimitiveValue :: one of
 
 ValueNull :: `null`
 
-A null value is represented with the keyword {null}.
+空值用关键字 {null} 表示。
 
 ### Boolean
 
-ValueBoolean :: one of
+ValueBoolean :: 以下之一
 - `true`
 - `false`
 
@@ -224,23 +224,23 @@ Fraction :: `.` Digit+
 
 ValueString :: `"` StringElement* `"`
 
-StringElement :: one of
+StringElement :: 以下之一
 - StringCharacter
 - StringEscapeSequence
 
 StringEscapeSequence :: `\` StringEscapeCharacter
 
-StringEscapeCharacter :: one of `"` `\` `n` `r` `t`
+StringEscapeCharacter :: 以下之一 `"` `\` `n` `r` `t`
 
-StringCharacter :: "any character" but not `"` or `\`
+StringCharacter :: "任意字符" 但不包括 `"` 或 `\`
 
-## Compound values
+## 复合值
 
-CompoundValue :: one of
+CompoundValue :: 以下之一
 - ValueArray
 - ValueHash
 
-### Array
+### 数组
 
 ValueArray ::
   `[` Space* ArrayItem* ArrayItemWithOptionalComma? Space* `]`
@@ -249,13 +249,13 @@ ArrayItem :: Value Space* `,` Space*
 
 ArrayItemWithOptionalComma :: Value Space* `,`?
 
-An array value ({ValueArray}) consists of a matched pair of square brackets containing a comma-delimited sequence of {Value}s. A matched pair of square brackets that contains nothing or only whitespace is parsed as an empty array value. An optional trailing comma is permitted within non-empty arrays. Arrays may be nested to an infinite level of depth and may contain Markdoc {Variable}s or {Function} invocations.
+数组值（{ValueArray}）由一对匹配的方括号组成，其中包含逗号分隔的 {Value} 序列。包含空内容或仅空白的匹配方括号被解析为空数组值。在非空数组中允许可选的尾随逗号。数组可以无限深度嵌套，并且可以包含 Markdoc {Variable} 或 {Function} 调用。
 
 ```example
 {% foo=[1, false, ["bar", $baz]] %}
 ```
 
-### Hash 
+### 哈希
 
 ValueHash ::
   `{` Space* HashItem* HashItemWithOptionalComma? Space* `}`
@@ -266,40 +266,40 @@ HashKeyValue :: HashKey `:` Space* Value Space*
 
 HashItemWithOptionalComma :: HashKeyValue `,`?
 
-HashKey :: one of
+HashKey :: 以下之一
 - Identifier
 - String
 
-A hash value ({ValueHash}) consists of a matched pair of curly braces containing a comma-delimited sequence of key-value pairs ({HashKeyValue}). A matched pair of curly braces that contains nothing or only whitespace is parsed as an empty hash value. An optional trailing comma is permitted within non-empty hashes. Hashes may be nested to an infinite level of depth and may contain Markdoc {Variable}s or {Function} invocations as values. The {HashKey} may consist of either a bare identifier or a string surrounded by double quotes.
+哈希值（{ValueHash}）由一对匹配的花括号组成，其中包含逗号分隔的键值对（{HashKeyValue}）序列。包含空内容或仅空白的匹配花括号被解析为空哈希值。在非空哈希中允许可选的尾随逗号。哈希可以无限深度嵌套，并且其值可以包含 Markdoc {Variable} 或 {Function} 调用。{HashKey} 可以由裸标识符或用双引号括起来的字符串组成。
 
 ```example
 {% foo={key: "example value", "quoted key": $variable} %}
 ```
 
-## Variable
+## 变量
 
 Variable :: VariableSigil Identifier VariableTail*
 
-VariableTail :: one of
+VariableTail :: 以下之一
 - `.` Identifier
 - `[` VariableSegmentValue `]`
 
-VariableSegmentValue :: one of
+VariableSegmentValue :: 以下之一
 - ValueNumber
 - ValueString
 - Variable
 
-VariableSigil :: one of `$` `@`
+VariableSigil :: 以下之一 `$` `@`
 
-A {Variable} allows Markdoc content to incorporate an external value. Variables may be used for {Interpolation} or in place of a value in tag attributes. Variables consist of multiple segments, which are intended to support accessing a value that is deeply nested in a complex data structure. A {Variable} segment can be an identifier or a square-bracket enclosed value. Determining how to resolve a {Variable} into a value is left up to individual Markdoc implementations.
+{Variable} 允许 Markdoc 内容合并外部值。变量可用于 {Interpolation} 或替换标签属性中的值。变量由多个段组成，旨在支持访问复杂数据结构中深层嵌套的值。{Variable} 段可以是标识符或用方括号括起来的值。如何将 {Variable} 解析为值由各个 Markdoc 实现自行决定。
 
 ```example
 {% foo=$bar.baz[10].qux %}
 ```
 
-Note: A future draft will specify the expected behavior of variables with the `$` and `@` sigils. Presently, the `$` sigil should be treated as a conventional variable and the `@` sigil is reserved for future use.
+注意：未来的草案将指定带有 `$` 和 `@` 符号的变量的预期行为。目前，`$` 符号应被视为常规变量，而 `@` 符号保留供将来使用。
 
-## Function
+## 函数
 
 Function :: Identifier `(` Space* FunctionParameters* Space* `)`
 
@@ -313,21 +313,21 @@ FunctionParameter :: one of
 
 FunctionParameterNamed :: Identifier `=` Value
 
-A function consists of an {Identifier} followed by {FunctionParameters} enclosed in parentheses. Functions are used to incorporate external logic in a Markdoc document. 
+函数由一个{标识符}后跟用括号括起来的{函数参数}组成。函数用于在 Markdoc 文档中引入外部逻辑。
 
-A {FunctionParameter} may be either a {Value} or a key-value pair separated by an equals sign. Functions may be used for {Interpolation} or in place of a value in tag attributes. Function parameters may be any valid {Value}, including a {Variable} or another {Function}. Determining how to evaluate a {Function} is left up to individual Markdoc implementations. 
+{函数参数}可以是{值}或由等号分隔的键值对。函数可用于{插值}或替换标签属性中的值。函数参数可以是任意有效的{值}，包括{变量}或另一个{函数}。如何评估{函数}由各个 Markdoc 实现决定。
 
-NOTE: A future draft will specify a default set of built-in functions that should be included in Markdoc implementations.
+注意：未来的草案将指定应包含在 Markdoc 实现中的一组默认内置函数。
 
-# Space
+# 空格
 
 Space :: one of
-- "Space (U+0020)"
-- "Horizontal Tab (U+0009)"
-- "New Line (U+000A)"
+- "空格 (U+0020)"
+- "水平制表符 (U+0009)"
+- "换行符 (U+000A)"
 
-# Identifier
+# 标识符
 
 Identifier :: /[a-zA-Z]/ IdentifierTail*
 
-IdentifierTail :: /[-_a-zA-Z0-9]/
+IdentifierTail :: /[-_a-zA-Z0-9]/*

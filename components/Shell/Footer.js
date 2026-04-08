@@ -7,7 +7,7 @@ export function Footer({ children: links, landing }) {
   const copyright = (
     <Link href="https://stripe.com">
       <svg
-        title="Built by Stripe"
+        title="由 Stripe 构建"
         width="99"
         height="28"
         viewBox="0 0 99 28"
@@ -64,9 +64,16 @@ export function Footer({ children: links, landing }) {
 
   const disclaimer = (
     <span className="disclaimer">
-      This site was{' '}
-      <a href="" className="live-edit">
-        built using Markdoc
+      <a target="_blank" href="https://www.zhcndoc.com" rel="noreferrer">
+        简中文档
+      </a>
+      {" | "}
+      <a
+        rel="nofollow noreferrer"
+        target="_blank"
+        href="https://beian.miit.gov.cn"
+      >
+        沪ICP备2024070610号-3
       </a>
       <style jsx>
         {`
@@ -108,11 +115,11 @@ export function Footer({ children: links, landing }) {
         {React.Children.toArray(links).map((l, i, a) => (
           <span className="main-link" key={i}>
             {l}
-            {i !== a.length - 1 ? ', ' : ''}
+            {i !== a.length - 1 ? ' | ' : ''}
           </span>
         ))}
         <span className="try-link">
-          <Link href="/sandbox">Try Markdoc</Link>
+          <Link href="/sandbox">试用 Markdoc</Link>
         </span>
       </h3>
       <hr />

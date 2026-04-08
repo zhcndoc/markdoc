@@ -10,6 +10,11 @@ export function TableOfContents({ toc }) {
   );
   return (
     <nav className="toc">
+      <div
+        className="wwads-cn wwads-vertical"
+        style={{ marginTop: 0, marginBottom: '1rem', maxWidth: '200px' }}
+        data-id="354"
+      />
       {items.length > 1 ? (
         <ul className="flex column">
           {items.map((item) => {

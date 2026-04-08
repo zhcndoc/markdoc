@@ -1,20 +1,20 @@
 ---
-title: Validation
-description: Extend Markdoc to provide custom validation for your documents.
+title: 验证
+description: 扩展 Markdoc 以为您的文档提供自定义验证。
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-## Syntax validation
+## 语法验证
 
-Markdoc supports syntax validation out of the box using the `validate` function.
+Markdoc 开箱即用地支持使用 `validate` 函数进行语法验证。
 
 ```ts
 validate(AstNode, ?Config) => ValidateError[]
 ```
 
 \
-Calling `validate` is an optional step that you can use to validate your abstract syntax tree (AST) before rendering. This is useful during testing, continuous integration, or in dev-tools like editor extensions.
+调用 `validate` 是一个可选步骤，您可以在渲染之前使用它来验证抽象语法树（AST）。这在测试、持续集成或编辑器扩展等开发工具中非常有用。
 
 {% example %}
 
@@ -25,12 +25,12 @@ const ast = Markdoc.parse(doc);
 
 const errors = Markdoc.validate(ast, config);
 
-// Do something with the errors
+// 对错误进行处理
 ```
 
 {% /example %}
 
-If your document contains a syntax error, the output of `validate` looks like this:
+如果文档包含语法错误，`validate` 的输出如下所示：
 
 {% sideBySide %}
 
@@ -55,7 +55,7 @@ const errors = Markdoc.validate(ast, config);
     error: {
       id: 'missing-closing',
       level: 'critical',
-      message: "Node 'callout' is missing closing"
+      message: "节点 'callout' 缺少闭合标签"
     }
   }
 ];
@@ -63,13 +63,13 @@ const errors = Markdoc.validate(ast, config);
 
 {% /sideBySide %}
 
-## Schema validation
+## 模式验证
 
-You can also extend Markdoc with custom validation rules, by adding a `validate` function to [Node](/docs/nodes) or [Tag](/docs/tags) definitions, or to your [custom attribute types](/docs/attributes#create-a-custom-attribute).
+您还可以通过向 [Node](/docs/nodes) 或 [Tag](/docs/tags) 定义，或向您的 [自定义属性类型](/docs/attributes#create-a-custom-attribute) 添加 `validate` 函数，来扩展 Markdoc 并添加自定义验证规则。
 
-### Validating content
+### 验证内容
 
-Use `Node` or `Tag` `validate` functions to verify the contents are correct, particularly the `children`.
+使用 `Node` 或 `Tag` 的 `validate` 函数来验证内容是否正确，特别是 `children`（子节点）。
 
 {% example %}
 
@@ -86,7 +86,7 @@ const config = {
             {
               id: 'provider-children',
               level: 'critical',
-              message: 'Providers must only have one child.'
+              message: 'Provider 必须只有一个子节点。'
             }
           ];
         }
@@ -99,9 +99,9 @@ const config = {
 
 {% /example %}
 
-### Validating attributes
+### 验证属性
 
-Use [custom `Attribute` types](/docs/attributes#create-a-custom-attribute) to validate that the attributes passed to your tags and nodes are correct.
+使用 [自定义 `Attribute` 类型](/docs/attributes#create-a-custom-attribute) 来验证传递给您的标签和节点的属性是否正确。
 
 {% example %}
 
@@ -113,7 +113,7 @@ export class ImageSrc {
         {
           id: 'image-src',
           level: 'error',
-          message: 'All image srcs should contain fully qualified URLs.'
+          message: '所有图片 src 应包含完整 URL。'
         }
       ];
     }
@@ -139,7 +139,7 @@ const config = {
 
 {% /example %}
 
-## Next steps
+## 后续步骤
 
-- [Render content as HTML or React](/docs/render)
-- [Check out common examples](/docs/examples)
+- [将内容渲染为 HTML 或 React](/docs/render)
+- [查看常见示例](/docs/examples)

@@ -1,19 +1,19 @@
 ---
-title: Using Markdoc with React
+title: 将 Markdoc 与 React 结合使用
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Markdoc supports [rendering Markdoc syntax with React](/docs/render#react) out-of-the-box.
+Markdoc 支持 [开箱即用地渲染 Markdoc 语法与 React](/docs/render#react)。
 
-To get started with React, check out [this example repo](https://github.com/markdoc/docs/tree/main/examples/react-nodejs) for how to use Markdoc with [`create-react-app`](https://create-react-app.dev/) and [`express`](https://expressjs.com/).
+要开始使用 React，请查看 [此示例仓库](https://github.com/markdoc/docs/tree/main/examples/react-nodejs)，了解如何将 Markdoc 与 [`create-react-app`](https://create-react-app.dev/) 和 [`express`](https://expressjs.com/) 结合使用。
 
-## Setup
+## 设置
 
-Follow these steps to build a Markdoc app with [`create-react-app`](https://create-react-app.dev/) and [`express`](https://expressjs.com/).
+请按照以下步骤，使用 [`create-react-app`](https://create-react-app.dev/) 和 [`express`](https://expressjs.com/) 构建 Markdoc 应用。
 
-1. Follow the [`create-react-app` getting started steps](https://create-react-app.dev/docs/getting-started) to create your initial app
-2. Set up a Markdoc schema
+1. 遵循 [`create-react-app` 入门步骤](https://create-react-app.dev/docs/getting-started) 创建初始应用
+2. 设置 Markdoc 架构
 
    ```shell
    schema/
@@ -64,7 +64,7 @@ Follow these steps to build a Markdoc app with [`create-react-app`](https://crea
    };
    ```
 
-3. Parse your Markdoc documents on the server
+3. 在服务器上解析 Markdoc 文档
 
    ```js
    // [...](https://github.com/markdoc/docs/blob/main/examples/react-nodejs/createContentManifest.js#L13)
@@ -72,7 +72,7 @@ Follow these steps to build a Markdoc app with [`create-react-app`](https://crea
    const ast = Markdoc.parse(rawText);
    ```
 
-4. Call `Markdoc.transform` on the server
+4. 在服务器上调用 `Markdoc.transform`
 
    ```js
    // [server.js](https://github.com/markdoc/docs/blob/main/examples/react-nodejs/server.js)
@@ -109,7 +109,7 @@ Follow these steps to build a Markdoc app with [`create-react-app`](https://crea
    });
    ```
 
-5. Call `Markdoc.renderers.react` on the client
+5. 在客户端调用 `Markdoc.renderers.react`
 
    ```js
    // src/App.js
@@ -156,14 +156,14 @@ Follow these steps to build a Markdoc app with [`create-react-app`](https://crea
    }
    ```
 
-6. Start up the client and server
+6. 启动客户端和服务器
    ```shell
    npm run start:client
    ```
-   and
+   以及
    ```shell
    npm run start:server
    ```
 
 \
-Or, clone [this starter repo](https://github.com/markdoc/docs/tree/main/examples/react-nodejs) and follow the directions in the [README](https://github.com/markdoc/docs/tree/main/examples/react-nodejs/README.md).
+或者，克隆 [此初始仓库](https://github.com/markdoc/docs/tree/main/examples/react-nodejs) 并遵循 [README](https://github.com/markdoc/docs/tree/main/examples/react-nodejs/README.md) 中的说明操作。

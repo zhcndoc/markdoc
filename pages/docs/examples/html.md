@@ -1,18 +1,18 @@
 ---
-title: Using Markdoc with HTML and Web Components
+title: 将 Markdoc 与 HTML 和 Web Components 结合使用
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Markdoc supports [rendering Markdoc syntax into HTML](/docs/render#html) with the HTML renderer.
+Markdoc 支持使用 HTML 渲染器将 Markdoc 语法渲染为 HTML。
 
-To get started with the HTML renderer, check out [this example repo](https://github.com/markdoc/docs/tree/main/examples/html-nodejs) for how to use Markdoc with [`express`](https://expressjs.com/) and [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components). You can use the HTML renderer without Web Components to transform and render HTML, but we recommend using Web Components as a way to organize and encapsulate functionality for custom Markdoc components.
+要开始使用 HTML 渲染器，请查看[此示例仓库](https://github.com/markdoc/docs/tree/main/examples/html-nodejs)，了解如何将 Markdoc 与 [`express`](https://expressjs.com/) 和 [Web Components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) 结合使用。您可以在不使用 Web Components 的情况下使用 HTML 渲染器来转换和渲染 HTML，但我们建议使用 Web Components 来组织和封装自定义 Markdoc 组件的功能。
 
-## Setup
+## 设置
 
-This guide assumes that you have an `Express` app installed. If you're starting from scratch, follow [these instructions to install Express](https://expressjs.com/en/starter/installing.html) and create an app.
+本指南假设您已安装 `Express` 应用。如果您是从零开始，请遵循[这些说明安装 Express](https://expressjs.com/en/starter/installing.html) 并创建应用。
 
-1. Set up a Markdoc schema.
+1. 设置 Markdoc 模式。
 
    ```shell
    schema/
@@ -63,7 +63,7 @@ This guide assumes that you have an `Express` app installed. If you're starting 
    };
    ```
 
-2. Define a component for any custom tag. Since `heading` is a core Markdown [node](/docs/nodes), Markdoc already knows how to render it using the CommonMark spec. `Callout` needs a component since it's a custom tag. We used [`lit`](https://lit.dev/docs/) in our example to define a Web Component for the `markdoc-callout` element.
+2. 为任何自定义标签定义组件。由于 `heading` 是核心 Markdown [节点](/docs/nodes)，Markdoc 已经知道如何使用 CommonMark 规范渲染它。`Callout` 需要组件，因为它是自定义标签。我们在示例中使用了 [`lit`](https://lit.dev/docs/) 来为 `markdoc-callout` 元素定义 Web Component。
 
    ```js
    // [src/Callout.js](https://github.com/markdoc/docs/blob/main/examples/html-nodejs/src/Callout.js)
@@ -101,7 +101,7 @@ This guide assumes that you have an `Express` app installed. If you're starting 
    }
    ```
 
-3. Parse your Markdoc documents on the server to create a map of your routes and Markdoc content. We call this a "content manifest" which is used during a request to return the right Markdoc content for the route.
+3. 在服务器上解析 Markdoc 文档，以创建路由和 Markdoc 内容的地图。我们称之为“内容清单”，它在请求期间用于返回路由的正确 Markdoc 内容。
 
    ```js
    // [...](https://github.com/markdoc/docs/blob/main/examples/html-nodejs/createContentManifest.js#L19-L20)
@@ -109,7 +109,7 @@ This guide assumes that you have an `Express` app installed. If you're starting 
    const ast = Markdoc.parse(rawText);
    ```
 
-4. Call `Markdoc.transform` on the server with a config of your custom tags, nodes, and any variables you want your Markdoc content to access. Then, use the HTML Markdoc renderer (`Markdoc.renderers.html`) to render the transformed content into the HTML to display to your user.
+4. 在服务器上使用自定义标签、节点以及您希望 Markdoc 内容访问的任何变量的配置调用 `Markdoc.transform`。然后，使用 HTML Markdoc 渲染器 (`Markdoc.renderers.html`) 将转换后的内容渲染为 HTML 以显示给用户。
 
    ```js
    // [server.js](https://github.com/markdoc/docs/blob/main/examples/html-nodejs/server.js#L47)
@@ -147,7 +147,7 @@ This guide assumes that you have an `Express` app installed. If you're starting 
    });
    ```
 
-5. Make sure to include any bundled scripts (in this case `main.js`) with your custom components on the client. This example uses a simple HTML template to inject the Markdoc content, but you can use other templating engines (for example: Pug, Handlebars, and so on) to manage this content injection for you.
+5. 确保在客户端包含任何打包的脚本（在本例中为 `main.js`）与您的自定义组件。此示例使用简单的 HTML 模板注入 Markdoc 内容，但您可以使用其他模板引擎（例如：Pug、Handlebars 等）来为您管理此内容注入。
 
    ```html
    <!DOCTYPE html>
@@ -155,8 +155,8 @@ This guide assumes that you have an `Express` app installed. If you're starting 
      <head>
        <meta charset="utf-8" />
        <meta name="viewport" content="width=device-width, initial-scale=1" />
-       <meta name="description" content="Web site created using Markdoc" />
-       <title>Markdoc: Create HTML Example</title>
+       <meta name="description" content="使用 Markdoc 创建的网站" />
+       <title>Markdoc：创建 HTML 示例</title>
      </head>
      <body>
        {{ CONTENT }}
@@ -165,11 +165,11 @@ This guide assumes that you have an `Express` app installed. If you're starting 
    </html>
    ```
 
-6. Start the demo app.
+6. 启动演示应用。
    ```shell
    npm run build
    ```
-   and
+   和
    ```shell
    npm run start
    ```

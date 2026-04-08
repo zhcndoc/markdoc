@@ -2,8 +2,8 @@
 route: '/variables'
 ---
 
-There a message under this line. Can you figure out how to get it to show up?
+这行下面有一条消息。你能想办法让它显示出来吗？
 
 {% if $flags.show_secret_feature %}
-This is special hidden text!
+这是特殊的隐藏文本！
 {% /if %}

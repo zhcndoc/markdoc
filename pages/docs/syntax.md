@@ -1,106 +1,106 @@
 ---
-title: The Markdoc syntax
+title: Markdoc 语法
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Markdoc syntax is a superset of Markdown, specifically the [CommonMark specification](https://commonmark.org/). Markdoc adds a few extensions to the syntax, such as tags and annotations, which we describe below. These extensions enable Markdoc's powerful extensibility model.
+Markdoc 语法是 Markdown 的超集，具体遵循 [CommonMark 规范](https://commonmark.org/)。Markdoc 为语法添加了一些扩展，例如标签和注释，我们将在下文描述。这些扩展实现了 Markdoc 强大的可扩展性模型。
 
-For a formal grammar of the Markdoc tag syntax, refer to the [Markdoc syntax spec](/spec).
+有关 Markdoc 标签语法的形式化语法，请参阅 [Markdoc 语法规范](/spec)。
 
-## Nodes
+## 节点
 
-Nodes are elements that Markdoc inherits from Markdown, which you can customize with [annotations](#annotations).
+节点是 Markdoc 从 Markdown 继承的元素，你可以使用[注释](#annotations)来自定义它们。
 
 {% sideBySide %}
 
 {% example %}
 
 ````
-# Headers
+# 标题
 
-**Bold**
+**粗体**
 
-_Italic_
+_斜体_
 
-[Links](/docs/nodes)
+[链接](/docs/nodes)
 
-![Images](/logo.svg)
+![图片](/logo.svg)
 
-Lists
-- Item 1
-- Item 1
-- Item 1
+列表
+- 项目 1
+- 项目 1
+- 项目 1
 
-> Quotes
+> 引用
 
-`Inline code`
+`行内代码`
 
 ```
-Code fences
+代码块
 ```
 ````
 
 {% /example %}
 
-#### Headers
+#### 标题
 
-**Bold**
+**粗体**
 
-_Italic_
+_斜体_
 
-[Links](/docs/nodes)
+[链接](/docs/nodes)
 
-Lists
+列表
 
-- Item 1
-- Item 1
-- Item 1
+- 项目 1
+- 项目 1
+- 项目 1
 
-> Quotes
+> 引用
 
-`Inline code`
+`行内代码`
 
 ```
-Code fences
+代码块
 ```
 
 {% /sideBySide %}
 
 \
-For more information, check out the [Nodes docs](/docs/nodes).
+更多信息，请参阅[节点文档](/docs/nodes)。
 
-## Tags
+## 标签
 
-Tags are the main syntactic extension that Markdoc adds on top of Markdown. Each tag is enclosed with `{%` and `%}`, and includes the tag name, [attributes](#attributes), and the content body.
+标签是 Markdoc 在 Markdown 基础上添加的主要语法扩展。每个标签由 `{%` 和 `%}` 括起来，包含标签名、[属性](#attributes)和内容主体。
 
-Similar to HTML, you can nest Markdoc tags, and customize them with [attributes](#attributes).
+与 HTML 类似，你可以嵌套 Markdoc 标签，并使用[属性](#attributes)自定义它们。
 
 {% example %}
 
 ```
 {% tag %}
-Content
+内容
 {% /tag %}
 ```
 
 {% /example %}
 
 \
-For more information, check out the [Tags docs](/docs/tags).
+更多信息，请参阅[标签文档](/docs/tags)。
 
-## Attributes
+## 属性
 
-Pass attributes to nodes and tags to customize their behavior. You can pass values of type: `number`, `string`, `boolean`, JSON `array`, or JSON `object`, either directly or using [variables](#variables). 
+向节点和标签传递属性以自定义其行为。你可以传递以下类型的值：`number`、`string`、`boolean`、JSON `array` 或 JSON `object`，可以直接传递或使用[variables](#variables)。
 
-With tags, you can use an HTML-like syntax:
+对于标签，你可以使用类似 HTML 的语法：
 
 {% example %}
 
 ```
 {% city
    index=0
-   name="San Francisco"
+   name="旧金山"
    deleted=false
    coordinates=[1, 4, 9]
    meta={id: "id_123"} 
@@ -109,18 +109,18 @@ With tags, you can use an HTML-like syntax:
 
 {% /example %}
 
-## Annotations
+## 注释
 
-Because the HTML-like syntax doesn't work with nodes, we offer another option, called _annotations_: write the attributes after the tag or node you're passing them to, in a separate set of `{%` and `%}`.
+由于类似 HTML 的语法不适用于节点，我们提供了另一种选项，称为_注释_：将属性写在标签或节点之后，用另一组 `{%` 和 `%}` 括起来。
 
 {% example %}
 
 ```
 {% table %}
 
-- Function {% width="25%" %}
-- Returns  {% colspan=2 %}
-- Example  {% align="right" %}
+- 函数 {% width="25%" %}
+- 返回  {% colspan=2 %}
+- 示例  {% align="right" %}
 
 {% /table %}
 ```
@@ -128,31 +128,31 @@ Because the HTML-like syntax doesn't work with nodes, we offer another option, c
 {% /example %}
 
 \
-For more information, check out the [Attributes docs](/docs/attributes).
-## Variables
+更多信息，请参阅[属性文档](/docs/attributes)。
+## 变量
 
-Markdoc variables let you customize your Markdoc documents at runtime. Variables all have a `$` prefix.
-
-{% example %}
-
-```
-Here I am rendering a custom {% $variable %}
-```
-
-{% /example %}
-
-Variables must contain JSON-serializable content, such as strings, booleans, numbers, arrays, and JSON objects.\
-You can access nested values using dot-notation, similar to JavaScript:
+Markdoc 变量允许你在运行时自定义 Markdoc 文档。所有变量都有 `$` 前缀。
 
 {% example %}
 
 ```
-Here's a deeply nested variable {% $markdoc.frontmatter.title %}
+这里我正在渲染一个自定义的 {% $variable %}
 ```
 
 {% /example %}
 
-You can use variables throughout your document, as content itself:
+变量必须包含可 JSON 序列化的内容，例如字符串、布尔值、数字、数组和 JSON 对象。\
+你可以使用点表示法访问嵌套值，类似于 JavaScript：
+
+{% example %}
+
+```
+这是一个深度嵌套的变量 {% $markdoc.frontmatter.title %}
+```
+
+{% /example %}
+
+你可以在整个文档中使用变量作为内容本身：
 
 {% example %}
 
@@ -163,12 +163,11 @@ You can use variables throughout your document, as content itself:
 {% /example %}
 
 \
-For more information, check out the [Variables docs](/docs/variables).
+更多信息，请参阅[变量文档](/docs/variables)。
 
-## Functions
+## 函数
 
-Functions look and feel similar to JavaScript functions. They're callable from the body of the document, inside an annotation, or within tag attributes.
-Function parameters are comma-separated. Trailing commas aren't supported in function calls.
+函数的外观和行为类似于 JavaScript 函数。你可以从文档正文、注释内部或标签属性中调用它们。函数参数以逗号分隔。函数调用不支持尾随逗号。
 
 {% example %}
 
@@ -176,7 +175,7 @@ Function parameters are comma-separated. Trailing commas aren't supported in fun
 # {% titleCase($markdoc.frontmatter.title) %}
 
 {% if equals(1, 2) %}
-Show the password
+显示密码
 {% /if %}
 
 {% tag title=uppercase($key) /%}
@@ -185,26 +184,26 @@ Show the password
 {% /example %}
 
 \
-For more information, check out the [Functions docs](/docs/functions).
+更多信息，请参阅[函数文档](/docs/functions)。
 
-## Comments
+## 注释
 
 {% callout type="warning" %}
-Note: comment support currently requires passing `allowComments: true` to `Markdoc.Tokenizer`.  
-This will be on by default in a future version of Markdoc.
+注意：当前注释支持需要向 `Markdoc.Tokenizer` 传递 `allowComments: true`。  
+在未来的 Markdoc 版本中，这将默认启用。
 {% /callout%}
 
-Markdoc supports [Markdown comment syntax](https://spec.commonmark.org/0.30/#example-624) adding comments to your documents without having the content show up in the renderable output.
+Markdoc 支持 [Markdown 注释语法](https://spec.commonmark.org/0.30/#example-624)，你可以向文档添加注释，而不会使内容显示在可渲染输出中。
 
 {% example %}
 
 ```
-<!-- comment goes here -->
+<!-- 注释写在这里 -->
 ```
 
 {% /example %}
 
-## Next steps
+## 后续步骤
 
-- [Render Markdoc](/docs/render)
-- [Validate your content](/docs/validation)
+- [渲染 Markdoc](/docs/render)
+- [验证你的内容](/docs/validation)

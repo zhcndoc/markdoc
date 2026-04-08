@@ -21,8 +21,8 @@ import 'codemirror/lib/codemirror.css';
 
 import '../public/globals.css';
 
-const TITLE = 'Markdoc';
-const DESCRIPTION = 'A powerful, flexible, Markdown-based authoring framework';
+const TITLE = 'Markdoc 中文文档';
+const DESCRIPTION = '一个强大、灵活、基于 Markdown 的创作框架';
 const MARKDOC = `
 
 
@@ -88,7 +88,7 @@ export default function MyApp(props) {
   return (
     <div className={`${isLandingPage ? 'page--landing' : ''} ${isDocs ? 'page--docs' : ''}`}>
       <Head>
-        <title>{`${TITLE} | ${title}`}</title>
+        <title>{`${title} - ${TITLE}`}</title>
         <link rel="shortcut icon" href="/favicon.ico" />
         <link rel="icon" href="/favicon.ico" />
         <link
@@ -122,18 +122,19 @@ export default function MyApp(props) {
         <meta name="title" content={title} />
         <meta name="description" content={description} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://markdoc.dev" />
+        <meta property="og:url" content="https://markdoc.zhcndoc.com" />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
         <meta
           property="og:image"
-          content="https://markdoc.dev/images/share.png"
+          content="https://markdoc.zhcndoc.com/images/share.png"
         />
         <meta name="twitter:card" content="summary" />
         <meta
           name="twitter:image"
-          content="https://markdoc.dev/images/share.png"
+          content="https://markdoc.zhcndoc.com/images/share.png"
         />
+        <script async src="https://www.zhcndoc.com/js/common.js" />
         <style>
           {`
           @font-face {
@@ -163,18 +164,19 @@ export default function MyApp(props) {
       </Head>
       {/* https://webaim.org/techniques/skipnav/ */}
       <a href="#skip-nav" className="skip-nav">
-        Skip to content
+        跳到正文
       </a>
       <TopNav>
-        <Link href="/docs/getting-started">Docs</Link>
+        <Link href="/docs/getting-started">文档</Link>
         <Link href="https://github.com/markdoc/markdoc">GitHub</Link>
         <Link href="https://github.com/markdoc/markdoc/discussions">
-          Community
+          社区
         </Link>
         <Link href="https://twitter.com/StripeDev">Twitter</Link>
         <span className="primary no-mobile">
-          <Link href="/sandbox">Try</Link>
+          <Link href="/sandbox">试用</Link>
         </span>
+        <Link href="https://www.zhcndoc.com">简中文档</Link>
       </TopNav>
       <div className="page">
         {isDocs ? <SideNav /> : null}
@@ -186,10 +188,10 @@ export default function MyApp(props) {
       </div>
       <div className="footer-bar">
         <Footer landing={isLandingPage}>
-          <Link href="/docs/getting-started">Docs</Link>
+          <Link href="/docs/getting-started">文档</Link>
           <Link href="https://github.com/markdoc/markdoc">GitHub</Link>
           <Link href="https://github.com/markdoc/markdoc/discussions">
-            Community
+            社区
           </Link>
           <Link href="https://twitter.com/StripeDev">Twitter</Link>
         </Footer>

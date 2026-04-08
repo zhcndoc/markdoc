@@ -1,22 +1,21 @@
 ---
-title: Nodes
+title: 节点
 description:
 ---
 
 # {% $markdoc.frontmatter.title %}
 
 
-Nodes are elements that Markdoc inherits from Markdown, specifically the [CommonMark specification](https://commonmark.org/). Markdoc nodes enable you to customize how your document renders without using any custom syntax—it consists entirely of Markdown. Customizing nodes lets you extend your implementation incrementally.
+节点是 Markdoc 从 Markdown（具体来说是 [CommonMark 规范](https://commonmark.org/)）继承的元素。Markdoc 节点使您能够自定义文档的渲染方式，而无需使用任何自定义语法——它完全由 Markdown 组成。自定义节点让您能够逐步扩展实现。
 
+## 内置节点
 
-## Built-in nodes
-
-Markdoc comes out of the box with built-in nodes for each of the [CommonMark](https://commonmark.org/) types:
+Markdoc 开箱即用，为每种 [CommonMark](https://commonmark.org/) 类型提供了内置节点：
 
 {% table %}
 
-- Node type
-- Attributes
+- 节点类型
+- 属性
 
 ---
 
@@ -54,13 +53,13 @@ Markdoc comes out of the box with built-in nodes for each of the [CommonMark](ht
   {% table %}
   ---
   - `content`
-  - A string containing the plain text inside the fence.
+  - 包含围栏内纯文本内容的字符串。
   ---
   - `language`
-  - The programming language used for syntax highlighting the fence contents.
+  - 用于对围栏内容进行语法高亮的编程语言。
   ---
   - `process`
-  - Determine whether to parse Markdoc tags within a fence. Set `process=false` to treat the content within a fence as plain text. 
+  - 确定是否在围栏内解析 Markdoc 标签。设置 `process=false` 可将围栏内的内容视为纯文本。 
   {% /table %}
 
 ---
@@ -169,9 +168,9 @@ Markdoc comes out of the box with built-in nodes for each of the [CommonMark](ht
 {% /table %}
 
 
-## Customizing Markdoc nodes
+## 自定义 Markdoc 节点
 
-You define custom nodes by passing a custom Node to your [`config` object](/docs/config), like:
+您通过将自定义节点传递给 [`config` 对象](/docs/config) 来定义自定义节点，例如：
 
 ```js
 import { heading } from './schema/Heading.markdoc';
@@ -190,14 +189,14 @@ const content = Markdoc.transform(ast, config);
 const children = Markdoc.renderers.react(content, React, { components });
 ```
 
-where `heading` looks something like:
+其中 `heading` 看起来像这样：
 
 ```js
 // ./schema/Heading.markdoc.js
 
 import { Tag } from '@markdoc/markdoc';
 
-// Or replace this with your own function
+// 或者将其替换为您自己的函数
 function generateID(children, attributes) {
   if (attributes.id && typeof attributes.id === 'string') {
     return attributes.id;
@@ -231,49 +230,49 @@ export const heading = {
 };
 ```
 
-After registering this custom node, you can then use it in your Markdoc, like:
+注册此自定义节点后，您便可以在 Markdoc 中使用它，例如：
 
 {% sideBySide %}
 
 {% example %}
 
 ```md
-#### My header
+#### 我的标题
 ```
 
 {% /example %}
 
-#### My header
+#### 我的标题
 
 {% /sideBySide %}
 
-## Options
+## 选项
 
-These are the optional fields you can use to customize your `Node`:
+这些是可用于自定义 `Node` 的可选字段：
 
 {% table %}
 
-- Option
-- Type
-- Description {% width="40%" %}
+- 选项
+- 类型
+- 描述 {% width="40%" %}
 
 ---
 
 - `render`
 - `string`
-- Name of the output (for example, HTML tag, React component name) to render
+- 要渲染的输出名称（例如，HTML 标签、React 组件名称）
 
 ---
 
 - `children`
 - `string[]`
-- Determines which tag or node types can be rendered as children of this node. Used in schema validation.
+- 确定哪些标签或节点类型可以渲染为此节点的子节点。用于模式验证。
 
 ---
 
 - `attributes`
 - `{ [string]: SchemaAttribute }`
-- Determines which [values (and their types)](/docs/attributes) can be passed to this node.
+- 确定可以传递给此节点的[值（及其类型）](/docs/attributes)。
 
 ---
 
@@ -284,7 +283,7 @@ These are the optional fields you can use to customize your `Node`:
     | RenderableTreeNode[]
     | null
   ```
-- Customize the Markdoc transform function for this node, returning the custom output you want to eventually render. This is called during the [`transform` step](/docs/render#transform).
+- 自定义此节点的 Markdoc 转换函数，返回您希望最终渲染的自定义输出。这会在 [`transform` 步骤](/docs/render#transform) 中调用。
 
 ---
 
@@ -292,11 +291,11 @@ These are the optional fields you can use to customize your `Node`:
 - ```js
   (Node, ?Options) => ValidationError[];
   ```
-- Extend Markdoc validation. This validates that the content meets validation requirements, and is called during the [`validate` step](/docs/render#validate)
+- 扩展 Markdoc 验证。这将验证内容是否符合验证要求，并在 [`validate` 步骤](/docs/render#validate) 中调用。
 
 {% /table %}
 
-## Next steps
+## 后续步骤
 
-- [Create custom tags](/docs/tags)
-- [Customize nodes with annotations](/docs/syntax#annotations)
+- [创建自定义标签](/docs/tags)
+- [使用注释自定义节点](/docs/syntax#annotations)

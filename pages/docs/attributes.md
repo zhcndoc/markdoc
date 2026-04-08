@@ -1,14 +1,13 @@
 ---
-title: Attributes
-description: Attributes are used to pass data to tags in Markdoc.
+title: 属性
+description: 属性用于向 Markdoc 标签传递数据。
 ---
 
 # {% $markdoc.frontmatter.title %}
 
+属性允许你向 Markdoc 标签传递数据，类似于[HTML 属性](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes)或[React 属性](https://reactjs.org/docs/components-and-props.html)。
 
-Attributes let you pass data to Markdoc tags, similar to [HTML attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) or [React props](https://reactjs.org/docs/components-and-props.html).
-
-You can pass values of type: `number`, `string`, `boolean`, JSON `array`, or JSON `object`, either directly or using [variables](/docs/variables). With a tag, you can use HTML-like syntax.
+你可以传递以下类型的值：`number`、`string`、`boolean`、JSON `array` 或 JSON `object`，可以直接传递或使用[变量](/docs/variables)。对于标签，可以使用类似 HTML 的语法。
 
 {% example %}
 
@@ -24,7 +23,7 @@ You can pass values of type: `number`, `string`, `boolean`, JSON `array`, or JSO
 
 {% /example %}
 
-To pass attributes to a node, you can't use the HTML-like syntax. Instead, use _annotation_ syntax. Put the attributes after the node, in their own set of `{%` and `%}`.
+要向节点传递属性，不能使用类 HTML 语法。相反，使用_注解_语法。将属性放在节点之后，用它们自己的{% 和 %}包围。
 
 {% example %}
 
@@ -40,9 +39,9 @@ To pass attributes to a node, you can't use the HTML-like syntax. Instead, use _
 
 {% /example %}
 
-(Annotation syntax also works with tags. But it's required with nodes.)
+（注解语法也适用于标签。但节点必须使用此语法。）
 
-Strings within attributes must be double-quoted. If you want to include a literal double-quote in a string you can escape it with using \\".
+属性中的字符串必须用双引号括起来。如果要在字符串中包含字面量的双引号，可以使用 \\" 进行转义。
 
 {% example %}
 
@@ -52,11 +51,9 @@ Strings within attributes must be double-quoted. If you want to include a litera
 
 {% /example %}
 
+## 属性简写
 
-## Attribute shorthand 
-
-
-In either syntax, you can use `.my-class-name` and `#my-id` as shorthand for `class=my-class-name` and `id=my-id`.
+在任何一种语法中，都可以使用 `.my-class-name` 和 `#my-id` 作为 `class=my-class-name` 和 `id=my-id` 的简写。
 
 {% example %}
 
@@ -72,12 +69,11 @@ In either syntax, you can use `.my-class-name` and `#my-id` as shorthand for `cl
 
 {% /example %}
 
+## 定义属性
 
-## Defining attributes
+Markdoc 允许你为每个[标签](/docs/tags)配置自定义属性类型。为属性指定类型会限制该属性可以传递给标签的值，从而在[验证](/docs/validation)时限制可能产生错误的值。
 
-Markdoc lets you configure custom attribute types for each [tag](/docs/tags). Assigning a type to an attribute limits which values an attribute can pass to a tag and, as a result, which values create errors during [validation](/docs/validation).
-
-The following example defines an attribute for a `Callout` tag. By default, the attribute is set to `note` and validated against the `matches` array.
+以下示例为 `Callout` 标签定义了一个属性。默认情况下，该属性设置为 `note`，并根据 `matches` 数组进行验证。
 
 ```js
 {
@@ -97,38 +93,38 @@ The following example defines an attribute for a `Callout` tag. By default, the 
 
 {% table %}
 
-- Option
-- Type
-- Description
+- 选项
+- 类型
+- 描述
 
 ---
 
 - `type`
-- - `String` or `"String"`
-  - `Boolean` or `"Boolean"`
-  - `Number` or `"Number"`
-  - `Object` or `"Object"`
-  - `Array` or `"Array"`
-  - A [Custom attribute](#create-a-custom-attribute) you create
-- Specifies the data type of the attribute.
+- - `String` 或 `"String"`
+  - `Boolean` 或 `"Boolean"`
+  - `Number` 或 `"Number"`
+  - `Object` 或 `"Object"`
+  - `Array` 或 `"Array"`
+  - 一个你创建的[自定义属性](#create-a-custom-attribute)
+- 指定属性的数据类型。
 
 ---
 
 - `default`
-- The value must be the same data type defined for the attribute and, if applicable, appear in `matches`.
-- Specifies the default behavior of the attribute if no value is provided.
+- 该值必须与属性定义的数据类型相同，如果适用，必须出现在 `matches` 中。
+- 指定未提供值时属性的默认行为。
 
 ---
 
 - `required`
 - `boolean`
-- Specifies whether a value must be passed to the attribute. If no value is provided, the system throws an error.
+- 指定是否必须向属性传递值。如果未提供值，系统将抛出错误。
 
 ---
 
 - `matches`
-- A regular expression, array of strings, or function that takes an option and returns strings.
-- Specifies a string pattern to match against an attribute value.
+- 一个正则表达式、字符串数组或接受选项并返回字符串的函数。
+- 指定要与属性值匹配的字符串模式。
 
 ---
 
@@ -138,13 +134,13 @@ The following example defines an attribute for a `Callout` tag. By default, the 
   - `warning`
   - `error`
   - `critical`
-- Specifies how Markdoc reports a validation error. Errors are ordered in ascending severity.
+- 指定 Markdoc 报告验证错误的方式。错误按严重性升序排列。
 
 {% /table %}
 
-## Create a custom attribute
+## 创建自定义属性
 
-With Markdoc you can create custom attributes, and use them within tags. In this example, you're creating a `DateTime` attribute that makes sure a valid string is provided.
+使用 Markdoc，你可以创建自定义属性，并在标签中使用它们。在此示例中，你正在创建一个 `DateTime` 属性，以确保提供有效的字符串。
 
 ```js
 // ./attribute-types/DateTime.js
@@ -169,7 +165,7 @@ export class DateTime {
 }
 ```
 
-Then, pass the custom attribute to your tag definition in your [`config` object](/docs/config).
+然后，将自定义属性传递给[`config` 对象](/docs/config)中的标签定义。
 
 ```js
 import { DateTime } from './attribute-types/DateTime';
@@ -190,6 +186,6 @@ const config = {
 };
 ```
 
-## Next steps
+## 后续步骤
 
-- [Pass variables to attributes](/docs/variables)
+- [向属性传递变量](/docs/variables)

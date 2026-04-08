@@ -1,56 +1,56 @@
 ---
-title: Get started with Markdoc
-description: How to get started with Markdoc
+title: 开始使用 Markdoc
+description: 如何开始使用 Markdoc
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Follow the instructions below to install Markdoc in your app. Or check out our [integration guide](/docs/nextjs) to help you build a documentation site. 
+请按照以下说明在您的应用中安装 Markdoc。或者查看我们的[集成指南](/docs/nextjs)以帮助您构建文档站点。
 
-## Install Markdoc
+## 安装 Markdoc
 
-Install the Markdoc library:
+安装 Markdoc 库：
 
 ```shell
 npm install @markdoc/markdoc
 ```
 
-or
+或
 
 ```shell
 yarn add @markdoc/markdoc
 ```
 
-## Import Markdoc
+## 导入 Markdoc
 
-Import the Markdoc library in your app:
+在您的应用中导入 Markdoc 库：
 
 ```js
 const Markdoc = require('@markdoc/markdoc');
 ```
 
-If you're using ESM:
+如果使用 ESM：
 
 ```js
 import Markdoc from '@markdoc/markdoc';
 ```
 
-## Use Markdoc
+## 使用 Markdoc
 
-Call the `parse`, `transform` and `render` Markdoc functions to render your content.
+调用 `parse`、`transform` 和 `render` Markdoc 函数来渲染您的内容。
 
 ```js
 const source = '# Markdoc';
 
 const ast = Markdoc.parse(source);
 {% comment %}
-// prettier-ignore
+// 忽略prettier
 {% /comment %}
-const content = Markdoc.transform(ast, /* [config](/docs/config) */);
+const content = Markdoc.transform(ast, /* [配置](/docs/config) */);
 
 const html = Markdoc.renderers.html(content);
 ```
 
-## Next steps
+## 后续步骤
 
-- [Learn Markdoc syntax](/docs/syntax)
+- [学习 Markdoc 语法](/docs/syntax)

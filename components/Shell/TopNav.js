@@ -6,9 +6,53 @@ import { AppLink as Link } from '../AppLink';
 function Search() {
   return (
     <DocSearch
-      appId={process.env.NEXT_PUBLIC_ALGOLIA_APP_ID}
-      apiKey={process.env.NEXT_PUBLIC_ALGOLIA_API_KEY}
+      appId="BH4D9OD16A"
+      apiKey="a9c8b1e5c0d9a1fbbdbf2c0e7cbbd"
       indexName="markdoc"
+      placeholder="搜索文档"
+      translations={{
+        button: {
+          buttonText: '搜索',
+          buttonAriaLabel: '搜索'
+        },
+        modal: {
+          searchBox: {
+            resetButtonTitle: '清除查询',
+            resetButtonAriaLabel: '清除查询',
+            cancelButtonText: '取消',
+            cancelButtonAriaLabel: '取消搜索',
+            searchInputLabel: '搜索'
+          },
+          footer: {
+            selectText: '选择',
+            selectKeyAriaLabel: '回车键',
+            navigateText: '浏览',
+            navigateUpKeyAriaLabel: '向上箭头',
+            navigateDownKeyAriaLabel: '向下箭头',
+            closeText: '关闭',
+            closeKeyAriaLabel: 'Esc 键',
+            searchByText: '搜索来源'
+          },
+          startScreen: {
+            recentSearchesTitle: '最近搜索',
+            noRecentSearchesText: '暂无最近搜索',
+            saveRecentSearchButtonTitle: '保存这次搜索',
+            removeRecentSearchButtonTitle: '从历史记录中移除这次搜索',
+            favoriteSearchesTitle: '收藏',
+            removeFavoriteSearchButtonTitle: '从收藏中移除这次搜索'
+          },
+          noResultsScreen: {
+            noResultsText: '没有匹配以下查询的结果：',
+            suggestedQueryText: '试试搜索',
+            reportMissingResultsText: '您认为这个查询应该有结果吗？',
+            reportMissingResultsLinkText: '告诉我们。'
+          },
+          errorScreen: {
+            titleText: '无法获取结果',
+            helpText: '您可以检查一下网络连接。'
+          }
+        }
+      }}
     />
   );
 }
@@ -92,6 +136,7 @@ export function TopNav({ children }) {
           }
           nav :global(a) {
             text-decoration: none;
+            white-space: nowrap;
           }
           nav :global(.DocSearch-Button) {
             background: var(--code-background);

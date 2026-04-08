@@ -4,49 +4,49 @@ import Link from 'next/link';
 
 const items = [
   {
-    title: 'Get started',
+    title: '快速开始',
     links: [
-      { href: '/docs/overview', children: 'What is Markdoc?' },
-      { href: '/docs/getting-started', children: 'Installation' },
-      { href: '/docs/faq', children: 'FAQ' },
-      { href: '/sandbox', children: 'Try it out' }
+      { href: '/docs/overview', children: '什么是 Markdoc？' },
+      { href: '/docs/getting-started', children: '安装' },
+      { href: '/docs/faq', children: '常见问题' },
+      { href: '/sandbox', children: '试用' }
     ]
   },
   {
-    title: 'Core concepts',
+    title: '核心概念',
     links: [
-      { href: '/docs/syntax', children: 'Syntax and schema' },
-      { href: '/docs/nodes', children: 'Nodes' },
-      { href: '/docs/tags', children: 'Tags' },
-      { href: '/docs/attributes', children: 'Attributes' },
-      { href: '/docs/variables', children: 'Variables' },
-      { href: '/docs/functions', children: 'Functions' },
+      { href: '/docs/syntax', children: '语法与 schema' },
+      { href: '/docs/nodes', children: '节点' },
+      { href: '/docs/tags', children: '标签' },
+      { href: '/docs/attributes', children: '属性' },
+      { href: '/docs/variables', children: '变量' },
+      { href: '/docs/functions', children: '函数' },
       {
         href: '/docs/render',
-        children: 'Rendering'
+        children: '渲染'
       },
       {
         href: '/docs/config',
-        children: 'Config objects'
+        children: '配置对象'
       },
-      { href: '/docs/validation', children: 'Validation' }
+      { href: '/docs/validation', children: '校验' }
     ]
   },
   {
-    title: 'Integration guides',
+    title: '集成指南',
     links: [
-      { href: '/docs/examples', children: 'Common examples' },
-      { href: '/docs/examples/html', children: 'Using with HTML' },
-      { href: '/docs/nextjs', children: 'Using with Next.js' },
-      { href: '/docs/examples/react', children: 'Using with React' }
+      { href: '/docs/examples', children: '常见示例' },
+      { href: '/docs/examples/html', children: 'HTML 集成' },
+      { href: '/docs/nextjs', children: 'Next.js 集成' },
+      { href: '/docs/examples/react', children: 'React 集成' }
     ]
   },
   {
-    title: 'Advanced concepts',
+    title: '进阶概念',
     links: [
       { href: '/docs/frontmatter', children: 'Frontmatter' },
-      { href: '/docs/partials', children: 'Partials' },
-      { href: '/docs/format', children: 'Formatting' }
+      { href: '/docs/partials', children: '局部模板' },
+      { href: '/docs/format', children: '格式化' }
     ]
   }
 ];

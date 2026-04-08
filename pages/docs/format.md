@@ -1,18 +1,18 @@
 ---
-title: Formatting
-description: Use Markdoc.format to prettify documents or generate source content
+title: 格式化
+description: 使用 Markdoc.format 美化文档或生成源内容
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Markdoc comes with the ability to take a Markdoc abstract syntax tree (AST) and generate the source content. This is useful for generating Markdoc files from data, or prettifying documents.
+Markdoc 具备将 Markdoc 抽象语法树（AST）转换为源内容的能力。这可用于从数据生成 Markdoc 文件，或美化文档。
 
-## Examples
+## 示例
 
-Take for example you want to generate a Markdoc file from from some JSON:
+例如，你想从一些 JSON 数据生成 Markdoc 文件：
 
 ```json
-// ./data.json
+// ./数据.json
 [
   [34.0522, -118.2437],
   [40.7128, -74.0060],
@@ -20,7 +20,7 @@ Take for example you want to generate a Markdoc file from from some JSON:
 ]
 ```
 
-You can call `Markdoc.format` with an AST `Node` to generate the source content:
+你可以调用 `Markdoc.format` 并传入一个 AST `Node` 来生成源内容：
 
 {% sideBySide %}
 

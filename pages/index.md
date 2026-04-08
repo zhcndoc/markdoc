@@ -1,15 +1,15 @@
 ---
-title: A powerful, flexible, Markdown-based authoring framework
-description: From personal blogs to massive documentation sites, Markdoc is a content authoring system that grows with you.
+title: 一个强大、灵活、基于 Markdown 的创作框架
+description: 从个人博客到大型文档站点，Markdoc 是一个能与您共同成长的内容创作系统。
 ---
 
 {% section .hero %}
 
 {% typewriter /%}
 
-> From personal blogs to massive documentation sites, Markdoc is a content authoring system that grows with you.
+> 从个人博客到大型文档站点，Markdoc 是一个能与您共同成长的内容创作系统。
 
-[View docs](/docs/getting-started) {% .primary %}
+[查看文档](/docs/getting-started) {% .primary %}
 
 {% /section %}
 
@@ -29,18 +29,18 @@ description: From personal blogs to massive documentation sites, Markdoc is a co
 
   {% item %}
 
-  ### Open source {% .jumbo %}
+  ### 开源 {% .jumbo %}
 
-  Maintain full control over your code and content. Markdoc is open-source and fully extensible.
+  完全掌控您的代码和内容。Markdoc 是开源的且完全可扩展。
   {% /item %}
 
 - {% ascii "pencil" /%}
 
   {% item %}
 
-  ### Developer & writer friendly {% .jumbo %}
+  ### 开发者与作者友好 {% .jumbo %}
 
-  Markdoc delivers a powerful, flexible, developer experience (DX) with an equally capable authoring experience (AX).
+  Markdoc 提供强大、灵活的开发者体验（DX），同时具备同样出色的创作体验（AX）。
 
   {% /item %}
 
@@ -48,9 +48,9 @@ description: From personal blogs to massive documentation sites, Markdoc is a co
 
   {% item %}
 
-  ### Adopt anywhere {% .jumbo %}
+  ### 随处采用 {% .jumbo %}
 
-  Use Markdoc to create interactive documentation experiences, static content sites, authoring tooling, and more.
+  使用 Markdoc 创建交互式文档体验、静态内容站点、创作工具等。
 
   {% /item %}
 
@@ -64,13 +64,13 @@ description: From personal blogs to massive documentation sites, Markdoc is a co
 
 {% item %}
 
-## Get started quickly {% .jumbo %}
+## 快速上手 {% .jumbo %}
 
-[Markdoc core](https://github.com/markdoc/markdoc) is a lightweight package containing everything you need to get started. If you want to get going even faster, check out our [Next.js plugin](https://github.com/markdoc/next.js) and deploy a Markdoc documentation site with zero boilerplate.
+[Markdoc core](https://github.com/markdoc/markdoc) 是一个轻量级包，包含您入门所需的一切。如果想更快上手，请查看我们的 [Next.js 插件](https://github.com/markdoc/next.js)，并零样板部署 Markdoc 文档站点。
 
-[Explore documentation](/docs/getting-started) {% .primary %}
+[探索文档](/docs/getting-started) {% .primary %}
 
-[Live edit]() {% .primary %} {% .live-edit %}
+[实时编辑]() {% .primary %} {% .live-edit %}
 
 {% /item %}
 
@@ -101,9 +101,9 @@ const html = Markdoc.renderers.html(content);
 
 {% sideBySide %}
 
-### Markdoc powers Stripe documentation {% .jumbo %}
+### Markdoc 驱动 Stripe 文档 {% .jumbo %}
 
-Stripe created Markdoc to power its largest and [most detailed content site](https://stripe.com/docs). Since then, we have adopted it across the company, writing hundreds of thousands of lines of Markdoc to create thousands of pages of expressive, custom documentation.
+Stripe 创建 Markdoc 来驱动其最大且[最详细的内容站点](https://stripe.com/docs)。此后，我们在整个公司采用它，编写了数十万行 Markdoc 代码，创建了数千页表达力强、自定义的文档。
 
 {% /sideBySide %}
 
@@ -111,23 +111,23 @@ Stripe created Markdoc to power its largest and [most detailed content site](htt
 
 {% features %}
 
-- **Familiar syntax**
+- **熟悉的语法**
 
-  Markdoc is a syntactic extension of [Markdown](https://commonmark.org/), so you can keep using all the syntax and tooling you are used to.
+  Markdoc 是 [Markdown](https://commonmark.org/) 的语法扩展，因此您可以继续使用所有熟悉的语法和工具。
 
-  [Learn the syntax](/docs/syntax) {% .primary %}
+  [学习语法](/docs/syntax) {% .primary %}
 
-- **Easily extensible**
+- **易于扩展**
 
-  Markdoc lets you customize all aspects of the system, from [custom tags](/docs/tags) and [nodes](/docs/nodes) to entirely [new renderers](/docs/render).
+  Markdoc 允许您自定义系统的所有方面，从[自定义标签](/docs/tags)和[节点](/docs/nodes)到全新的[渲染器](/docs/render)。
 
-  [Learn more](/docs/render) {% .primary %}
+  [了解更多](/docs/render) {% .primary %}
 
-- **Built-in validation**
+- **内置验证**
 
-  You can add custom validation throughout your content system, ensuring nothing breaks and your content remains consistent.
+  您可以在内容系统中添加自定义验证，确保不会出现故障且内容保持一致。
 
-  [Learn more](/docs/validation) {% .primary %}
+  [了解更多](/docs/validation) {% .primary %}
 
 {% /features %}
 

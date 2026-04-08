@@ -1,36 +1,38 @@
 ---
-title: What is Markdoc?
+title: 什么是 Markdoc？
 description:
 ---
 
 # {% $markdoc.frontmatter.title %}
 
-Markdoc is a Markdown-based document format and a framework for content publishing. It was designed internally at Stripe to meet the needs of our user-facing [product documentation](https://docs.stripe.com). Markdoc extends Markdown with a [custom syntax](/docs/syntax) for tags and annotations, providing a way to tailor content to individual users and introduce interactive elements.
+Markdoc 是一种基于 Markdown 的文档格式和一个内容发布框架。它最初在 Stripe 内部设计，旨在满足我们面向用户的[产品文档](https://docs.stripe.com)的需求。Markdoc 通过一种用于标签和注释的[自定义语法](/docs/syntax) 扩展了 Markdown，提供了一种为个别用户定制内容和引入交互元素的方法。
 
 {% youtube
   src="https://www.youtube-nocookie.com/embed/MAWK_VmjU1Y?controls=0"
-  title="Introducing Markdoc"
+  title="介绍 Markdoc"
   width="50%" /%}
 
-## How Markdoc works
+## Markdoc 如何工作
 
-By design, Markdoc is not a full-blown templating language and does not allow mixing arbitrary code and content. It is, however, a fully declarative format that is machine-readable from top to bottom: it parses to a data structure that can be traversed to support powerful static analysis, validation, and programmatic content transformation.
+根据设计，Markdoc 不是一个完整的模板语言，不允许混合任意代码和内容。然而，它是一种完全声明式的格式，可以从上到下被机器读取：它解析为一种可遍历的数据结构，以支持强大的静态分析、验证和编程式内容转换。
 
-The Markdoc [renderer](/docs/render) interprets custom [tag](/docs/tags) and [node](/docs/nodes) definitions, transforming the document data structure into a tree of renderable nodes, which is finally converted into the desired output format. The Markdoc framework currently includes three renderers: an HTML string renderer, a static React renderer that transpiles a document to JavaScript code, and a dynamic React renderer that converts renderable tree nodes directly into a React elements.
+Markdoc [渲染器](/docs/render) 解释自定义 [标签](/docs/tags) 和 [节点](/docs/nodes) 定义，将文档数据结构转换为可渲染节点的树，最终转换为所需的输出格式。Markdoc 框架目前包括三个渲染器：一个 HTML 字符串渲染器、一个将文档转译为 JavaScript 代码的静态 React 渲染器，以及一个将可渲染树节点直接转换为 React 元素的动态 React 渲染器。
 
-Markdoc's React renderer makes it possible to use React components within Markdown content, supporting interactive features like tab switchers and collapsible sections. It is possible to implement custom renderers that introduce support for additional output formats and client frameworks.
-## Why add markup to Markdown?
+Markdoc 的 React 渲染器使得在 Markdown 内容中使用 React 组件成为可能，支持像标签切换器和可折叠部分这样的交互功能。可以实现自定义渲染器，以引入对额外输出格式和客户端框架的支持。
 
-We chose Markdown as a starting point because it is easy to read and reason about, already familiar to many engineers and technical writers, and widely supported by a large ecosystem of existing tools. Markdown by itself, however, isn't ideally suited for writing complex, highly-structured content like documentation.
+## 为什么要向 Markdown 添加标记？
 
-Markdoc provides an extensible system for defining custom tags that can be used seamlessly in Markdown content. Using the custom tag syntax, we're able to express more elaborate document hierarchy, insert interactive components, and support features like conditional content, content inclusion, and variable interpolation. Markdoc's extensions to the Markdown syntax are designed to be composable and minimally intrusive, providing crucial functionality without compromising the readability of prose. 
-## Under the hood
+我们选择 Markdown 作为起点，因为它易于阅读和推理，已被许多工程师和技术撰稿人所熟悉，并得到大量现有工具生态系统的广泛支持。然而，Markdown 本身并不完全适合编写像文档这样复杂、高度结构化的内容。
 
-Markdoc's parser is built on top of a popular open-source Markdown library called [`markdown-it`](https://github.com/markdown-it/markdown-it). Markdoc uses `markdown-it` as a tokenizer, building an Abstract Syntax Tree (AST) from the array of tokens emitted by `markdown-it`. Markdoc's custom tag syntax is implemented inside of a `markdown-it` plugin. The logic that parses the tag syntax is generated from a [peg.js](https://pegjs.org/) grammar.
+Markdoc 提供了一个可扩展的系统，用于定义可在 Markdown 内容中无缝使用的自定义标签。使用自定义标签语法，我们能够表达更精细的文档层次结构、插入交互组件，并支持条件内容、内容包含和变量插值等功能。Markdoc 对 Markdown 语法的扩展被设计为可组合且最小侵入的，在提供关键功能的同时不影响正文的可读性。
 
-Markdoc has its own dedicated rendering architecture rather than relying on markdown-it to generate its output. Developing an independent rendering system was necessary in order to handle Markdoc's custom tags and support multiple output formats.
+## 内部原理
 
-## Next steps
+Markdoc 的解析器构建在一个流行的开源 Markdown 库 [`markdown-it`](https://github.com/markdown-it/markdown-it) 之上。Markdoc 使用 `markdown-it` 作为分词器，从 `markdown-it` 发出的令牌数组构建抽象语法树（AST）。Markdoc 的自定义标签语法在 `markdown-it` 插件内部实现。解析标签语法的逻辑是从一个 [peg.js](https://pegjs.org/) 语法生成的。
 
-- [Install Markdoc](/docs/getting-started)
-- [Try it out online](/sandbox)
+Markdoc 拥有自己专用的渲染架构，而不是依赖 markdown-it 来生成输出。开发独立的渲染系统是必要的，以便处理 Markdoc 的自定义标签并支持多种输出格式。
+
+## 后续步骤
+
+- [安装 Markdoc](/docs/getting-started)
+- [在线试用](/sandbox)
