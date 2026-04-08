@@ -12,7 +12,7 @@ export function TableOfContents({ toc }) {
     <nav className="toc">
       <div
         className="wwads-cn wwads-vertical"
-        style={{ marginTop: 0, marginBottom: '1rem', maxWidth: '200px' }}
+        style={{ margin: '0 0 1rem 1rem', maxWidth: '200px' }}
         data-id="354"
       />
       {items.length > 1 ? (

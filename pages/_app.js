@@ -172,7 +172,7 @@ export default function MyApp(props) {
         <Link href="https://github.com/markdoc/markdoc/discussions">
           社区
         </Link>
-        <Link href="https://twitter.com/StripeDev">Twitter</Link>
+        {/* <Link href="https://twitter.com/StripeDev">Twitter</Link> */}
         <span className="primary no-mobile">
           <Link href="/sandbox">试用</Link>
         </span>
@@ -193,7 +193,7 @@ export default function MyApp(props) {
           <Link href="https://github.com/markdoc/markdoc/discussions">
             社区
           </Link>
-          <Link href="https://twitter.com/StripeDev">Twitter</Link>
+          {/* <Link href="https://twitter.com/StripeDev">Twitter</Link> */}
         </Footer>
       </div>
 

@@ -14,7 +14,11 @@ function EditPage({ source: initialDocument }) {
       })}
       <div
         className="wwads-cn wwads-horizontal"
-        style={{ marginTop: '1rem', marginBottom: '1rem', maxWidth: '100%' }}
+        style={{
+          maxWidth: '1200px',
+          width: '100%',
+          margin: '1rem auto'
+        }}
         data-id="354"
       />
       <EditPagePanel>
@@ -40,9 +44,9 @@ export function Document({ source, children }) {
           <div
             className="wwads-cn wwads-horizontal"
             style={{
-              marginTop: '1rem',
-              marginBottom: '1rem',
-              maxWidth: '100%'
+              maxWidth: '1200px',
+              width: '100%',
+              margin: '1rem auto'
             }}
             data-id="354"
           />
