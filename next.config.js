@@ -1,6 +1,7 @@
 const withMarkdoc = require('@markdoc/next.js');
 
 module.exports = withMarkdoc()({
+  output: 'standalone',
   reactStrictMode: true,
   pageExtensions: ['js', 'md', 'mdoc'],
   i18n: {
